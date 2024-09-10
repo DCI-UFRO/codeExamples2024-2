@@ -6,6 +6,7 @@ public class Pokemon {
 	private String nombre;
 	private int numero;
 	private int hp;
+	private int hpMax;
 	private boolean conVida;
 
 	public Pokemon(String tipo, String nombre, int numero, int hp) {
@@ -14,6 +15,7 @@ public class Pokemon {
 		this.numero = numero;
 		this.hp = hp;
 		this.conVida = true;
+		this.hpMax = hp;
 	}
 
 	/**
@@ -53,5 +55,13 @@ public class Pokemon {
 				", numero=" + numero +
 				", hp=" + hp +
 				'}';
+	}
+
+	public int getHpMax() {
+		return hpMax;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
 	}
 }

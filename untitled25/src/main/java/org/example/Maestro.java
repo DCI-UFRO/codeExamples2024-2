@@ -4,8 +4,9 @@ import java.util.*;
 
 public class Maestro {
 
-	ArrayList<Pokemon> equipo;
+	private ArrayList<Pokemon> equipo;
 	private String nombre;
+	private boolean gano;
 
 	/**
 	 * 
@@ -23,8 +24,10 @@ public class Maestro {
 	 */
 	public Maestro(String nombre, Pokemon pokemon) {
 		this.nombre = nombre;
+		this.gano = true;
 		equipo = new ArrayList<>();
 		addPokemon(pokemon);
+
 	}
 
 	/**
@@ -44,11 +47,12 @@ public class Maestro {
 	 * @param maestro
 	 */
 	public void desafiar(Maestro maestro) {
-		while(this.equipo.size()>0 && maestro.equipo.size()>0){
+		while(this.getPokemon()!=null && maestro.getPokemon()!=null){
 			Pokemon p1 = this.getPokemon();
 			Pokemon p2  = maestro.getPokemon();
 			System.out.println("p1 = " + p1);
 			System.out.println("p2 = " + p2);
+
 			p1.luchar(p2);
 			if(!p2.isConVida()){
 				continue;
@@ -58,6 +62,8 @@ public class Maestro {
 				continue;
 			}
 		}
+		String ganador = this.gano ? this.nombre : maestro.nombre;
+		System.out.println("Gano el Maestro: " + ganador);
 	}
 	
 	public Pokemon getPokemon(){
@@ -66,7 +72,12 @@ public class Maestro {
 				return equipo.get(i);
 			}
 		}
+		this.gano = false;
 		return null;
+	}
+
+	public boolean isGano() {
+		return gano;
 	}
 
 	@Override
@@ -75,5 +86,9 @@ public class Maestro {
 				"equipo=" + equipo +
 				", nombre='" + nombre + '\'' +
 				'}';
+	}
+
+	public ArrayList<Pokemon> getEquipo() {
+		return equipo;
 	}
 }
