@@ -12,7 +12,18 @@ public class Main {
         String[] pokemonData = leerArchivo("pokemon.csv").split("\n");
         ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
         generarPokemones(pokemones, pokemonData);
-        System.out.println("pokemones.size() = " + pokemones.size());
+        //System.out.println("pokemones.size() = " + pokemones.size());
+
+        Maestro m1 = new Maestro("Juliana",pokemones.get((int)(Math.random()* pokemones.size())));
+        Maestro m2 = new Maestro("Pedro", pokemones.get((int)(Math.random()* pokemones.size())));
+        System.out.println("m1 = " + m1);
+        System.out.println("m2 = " + m2);
+
+        m1.desafiar(m2);
+
+        
+
+        
 
     }
     public static void generarPokemones(ArrayList<Pokemon> pokemones, String[] pokemonData){

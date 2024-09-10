@@ -12,8 +12,8 @@ public class Maestro {
 	 * @param nombre
 	 */
 	public Maestro(String nombre) {
-		// TODO - implement Maestro.Maestro
-		throw new UnsupportedOperationException();
+		this.nombre = nombre;
+		equipo = new ArrayList<>();
 	}
 
 	/**
@@ -22,8 +22,9 @@ public class Maestro {
 	 * @param pokemon
 	 */
 	public Maestro(String nombre, Pokemon pokemon) {
-		// TODO - implement Maestro.Maestro
-		throw new UnsupportedOperationException();
+		this.nombre = nombre;
+		equipo = new ArrayList<>();
+		addPokemon(pokemon);
 	}
 
 	/**
@@ -31,8 +32,11 @@ public class Maestro {
 	 * @param pokemon
 	 */
 	public void addPokemon(Pokemon pokemon) {
-		// TODO - implement Maestro.addPokemon
-		throw new UnsupportedOperationException();
+		if(equipo.size()<6){
+			equipo.add(pokemon);
+		}else{
+			System.out.println("Demasiados pokemones en el equipo");
+		}
 	}
 
 	/**
@@ -40,8 +44,36 @@ public class Maestro {
 	 * @param maestro
 	 */
 	public void desafiar(Maestro maestro) {
-		// TODO - implement Maestro.desafiar
-		throw new UnsupportedOperationException();
+		while(this.equipo.size()>0 && maestro.equipo.size()>0){
+			Pokemon p1 = this.getPokemon();
+			Pokemon p2  = maestro.getPokemon();
+			System.out.println("p1 = " + p1);
+			System.out.println("p2 = " + p2);
+			p1.luchar(p2);
+			if(!p2.isConVida()){
+				continue;
+			}
+			p2.luchar(p1);
+			if (!p1.isConVida()){
+				continue;
+			}
+		}
+	}
+	
+	public Pokemon getPokemon(){
+		for (int i = 0; i < this.equipo.size(); i++) {
+			if(equipo.get(i).isConVida()){
+				return equipo.get(i);
+			}
+		}
+		return null;
 	}
 
+	@Override
+	public String toString() {
+		return "Maestro{" +
+				"equipo=" + equipo +
+				", nombre='" + nombre + '\'' +
+				'}';
+	}
 }

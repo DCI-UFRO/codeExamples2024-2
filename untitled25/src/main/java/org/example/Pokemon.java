@@ -6,12 +6,14 @@ public class Pokemon {
 	private String nombre;
 	private int numero;
 	private int hp;
+	private boolean conVida;
 
 	public Pokemon(String tipo, String nombre, int numero, int hp) {
 		this.tipo = tipo;
 		this.nombre = nombre;
 		this.numero = numero;
 		this.hp = hp;
+		this.conVida = true;
 	}
 
 	/**
@@ -19,8 +21,12 @@ public class Pokemon {
 	 * @param dano
 	 */
 	public void dano(int dano) {
-		// TODO - implement Pokemon.dano
-		throw new UnsupportedOperationException();
+		hp-=dano;
+		if(hp<=0){
+			System.out.println(this.nombre + " ha sido debilitado");
+			hp = 0;
+			conVida = false;
+		}
 	}
 
 	/**
@@ -28,11 +34,24 @@ public class Pokemon {
 	 * @param pokemon
 	 */
 	public void luchar(Pokemon pokemon) {
-		// TODO - implement Pokemon.luchar
-		throw new UnsupportedOperationException();
+		if(conVida){
+			pokemon.dano((int)(Math.random()*50));
+		}else{
+			System.out.println(this.nombre + " ha sido debilitado");
+		}
 	}
 
+	public boolean isConVida() {
+		return conVida;
+	}
 
-
-
+	@Override
+	public String toString() {
+		return "Pokemon{" +
+				"tipo='" + tipo + '\'' +
+				", nombre='" + nombre + '\'' +
+				", numero=" + numero +
+				", hp=" + hp +
+				'}';
+	}
 }
